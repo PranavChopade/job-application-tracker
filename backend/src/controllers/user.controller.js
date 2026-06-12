@@ -25,7 +25,7 @@ export const register = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: ENV.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: ENV.NODE_ENV === "production" ? "none" : "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7days
     })
     res.status(201).json({
@@ -60,7 +60,7 @@ export const login = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: ENV.NODE_ENV === "production",
-      sameSite: "strict",
+      sameSite: ENV.NODE_ENV === "production" ? "none" : "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7days
     })
     res.status(200).json({
